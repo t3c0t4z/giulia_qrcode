@@ -1,0 +1,1 @@
+# giulia_qrcode
