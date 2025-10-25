@@ -1,0 +1,35 @@
+{
+"name": "Giulia Castro | Modelo & Influencer",
+  "short_name": "Giulia Castro",
+  "description": "Giulia Castro - Modelo & Influencer | Rio de Janeiro 📸💚",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#8DE05E",
+  "theme_color": "#8DE05E",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/giuliafotoqrcodebrfav.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/giuliafotoqrcodebrfav.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "photo", "social"],
+  "screenshots": [
+    {
+      "src": "https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/giuliainstagram1.png",
+      "sizes": "540x720",
+      "type": "image/png"
+    }
+  ]
+}

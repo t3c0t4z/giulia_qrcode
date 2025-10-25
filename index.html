@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#8DE05E">
+    <title>Giulia Castro | Modelo & Influencer 📸</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/giuliafotoqrcodebrfav.png">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/giuliafotoqrcodebrfav.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Allura&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+    
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        /* MOBILE CONTAINER - COM SCROLL */
+        .mobile-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #fff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            transition: background 0.5s ease;
+        }
+    
+        body.dark-mode .mobile-container {
+            background: #0a0a0a;
+        }
+    
+        /* SLIDESHOW TRANSLÚCIDO - 50% MAIS CLARO */
+        .bg-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    
+        .bg-slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+        }
+    
+        .bg-slideshow img.active {
+            opacity: 0.95;  /* 95% mais claro */
+        }
+    
+        body.dark-mode .bg-slideshow img.active {
+            opacity: 0.85;  /* 85% mais claro no dark */
+        }
+    
+        /* CONTENT */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, rgba(255,255,255,0.65) 0%, rgba(250,250,250,0.70) 100%);
+            transition: background 0.5s ease;
+            padding-bottom: 40px;
+        }
+    
+        body.dark-mode .content-wrapper {
+            background: linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(15,15,15,0.70) 100%);
+        }
+    
+        /* HEADER - DESCIDO 4CM */
+        .header {
+            padding: 80px 25px 20px;  /* Era 40px, agora 80px */
+            text-align: center;
+            position: relative;
+        }
+    
+        .controls {
+            position: absolute;
+            top: 18px;  /* Era 12px, agora 52px */
+            right: 12px;
+            display: flex;
+            gap: 8px;
+        }
+    
+        .control-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid #8DE05E;
+            background: rgba(141, 224, 94, 0.1);
+            color: #8DE05E;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+    
+        .control-btn:hover {
+            transform: scale(1.08);
+            background: rgba(141, 224, 94, 0.2);
+        }
+    
+        .control-btn:active {
+            transform: scale(0.98);
+        }
+    
+        body.dark-mode .control-btn {
+            background: rgba(141, 224, 94, 0.15);
+        }
+    
+        /* LOGO 40% MAIOR - 182px */
+        .logo {
+            width: 182px;
+            height: 182px;
+            margin: 0 auto 22px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 
+                0 18px 55px rgba(141, 224, 94, 0.45),
+                0 0 0 5px rgba(141, 224, 94, 0.2),
+                0 0 0 10px rgba(141, 224, 94, 0.1);
+            animation: logoFloat 3s ease-in-out infinite, logoPulse 2s ease-in-out infinite;
+            border: 6px solid #8DE05E;
+            position: relative;
+        }
+    
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-14px) rotate(5deg); }
+        }
+    
+        @keyframes logoPulse {
+            0%, 100% { 
+                box-shadow: 0 18px 55px rgba(141, 224, 94, 0.45), 0 0 0 5px rgba(141, 224, 94, 0.2); 
+            }
+            50% { 
+                box-shadow: 0 22px 65px rgba(141, 224, 94, 0.65), 0 0 0 7px rgba(141, 224, 94, 0.35); 
+            }
+        }
+    
+        body.dark-mode .logo {
+            border-color: #8DE05E;
+            box-shadow: 
+                0 18px 55px rgba(141, 224, 94, 0.65),
+                0 0 0 5px rgba(141, 224, 94, 0.3),
+                0 0 0 10px rgba(141, 224, 94, 0.15);
+        }
+    
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    
+        /* NAME */
+        .name {
+            font-family: 'Allura', cursive;
+            font-size: 52px;
+            font-weight: 400;
+            color: #000;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+    
+        body.dark-mode .name {
+            color: #fff;
+        }
+    
+        .title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+    
+        body.dark-mode .title {
+            color: #bbb;
+        }
+    
+        .location {
+            font-size: 12px;
+            color: #777;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 6px;
+        }
+    
+        body.dark-mode .location {
+            color: #999;
+        }
+    
+        .slogan {
+            font-size: 12px;
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+    
+        body.dark-mode .slogan {
+            color: #aaa;
+        }
+    
+        /* QR SECTION */
+        .qr-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px 20px 30px;
+        }
+    
+        /* CLOSE FRIENDS CARD */
+        .qr-card {
+            width: 100%;
+            max-width: 320px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            border-radius: 30px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+    
+        body.dark-mode .qr-card {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+        }
+    
+        .qr-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: glow 4s ease-in-out infinite;
+        }
+    
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; transform: rotate(0deg); }
+            50% { opacity: 1; transform: rotate(180deg); }
+        }
+    
+        .qr-image-container {
+            position: relative;
+            z-index: 1;
+            background: #fff;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+    
+        .qr-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+            transition: opacity 0.3s ease;
+        }
+    
+        .qr-label {
+            position: relative;
+            z-index: 1;
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+    
+        /* BOTÕES 3D */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+    
+        .social-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #fff;
+            box-shadow: 
+                0 6px 20px rgba(0, 0, 0, 0.3),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.2),
+                inset 0 3px 8px rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+    
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 40%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    
+        .social-btn:hover {
+            transform: translateY(-6px) scale(1.08);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.2),
+                inset 0 3px 8px rgba(255, 255, 255, 0.2);
+        }
+    
+        .social-btn:active {
+            transform: translateY(-3px) scale(1.03);
+        }
+    
+        .social-btn.active {
+            box-shadow: 
+                0 0 0 3px rgba(255, 255, 255, 0.6),
+                0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+    
+        .whatsapp {
+            background: linear-gradient(145deg, #2EE86E 0%, #25D366 50%, #1DA856 100%);
+        }
+    
+        .instagram {
+            background: linear-gradient(145deg, #A342D6 0%, #C13584 25%, #E1306C 50%, #F77737 75%, #FCAF45 100%);
+        }
+    
+        .link {
+            background: linear-gradient(145deg, #9EE58E 0%, #8DE05E 50%, #6FC74F 100%);
+        }
+    
+        .link img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+        }
+    
+        /* LANG CONTENT */
+        .lang-content {
+            display: none;
+        }
+    
+        .lang-content.active {
+            display: inline;
+        }
+    
+        /* SCROLL CUSTOMIZADO */
+        .mobile-container::-webkit-scrollbar {
+            width: 6px;
+        }
+    
+        .mobile-container::-webkit-scrollbar-track {
+            background: rgba(141, 224, 94, 0.1);
+        }
+    
+        .mobile-container::-webkit-scrollbar-thumb {
+            background: rgba(141, 224, 94, 0.4);
+            border-radius: 3px;
+        }
+    
+        .mobile-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(141, 224, 94, 0.6);
+        }
+    
+        /* RESPONSIVE */
+        @media (max-width: 380px) {
+            .name { font-size: 44px; }
+            .logo { width: 160px; height: 160px; }
+            .qr-card { max-width: 290px; padding: 28px; }
+            .social-btn { width: 50px; height: 50px; font-size: 22px; }
+            .header { padding: 75px 20px 18px; }
+            .controls { top: 47px; }
+        }
+    
+        @media (max-height: 700px) {
+            .header { padding: 70px 20px 16px; }
+            .controls { top: 42px; }
+            .logo { width: 150px; height: 150px; margin-bottom: 18px; }
+            .qr-section { padding: 18px 18px 25px; }
+            .qr-card { max-width: 290px; padding: 26px; }
+        }
+    </style>
+
+</head>
+<body class="light-mode">
+    <!-- MOBILE CONTAINER -->
+    <div class="mobile-container">
+        <!-- SLIDESHOW TRANSLÚCIDO -->
+        <div class="bg-slideshow">
+            <img src="https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/giuliainstagram1.png" class="active" alt="Giulia Castro">
+            <img src="https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/giuliainstagram2.png" alt="Giulia Castro">
+            <img src="https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/giuliainstagram3.jpeg" alt="Giulia Castro">
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content-wrapper">
+            <!-- HEADER -->
+            <div class="header">
+                <div class="controls">
+                    <button class="control-btn" onclick="toggleLanguage()" aria-label="Language">
+                        <span id="lang-btn">PT</span>
+                    </button>
+                    <button class="control-btn" onclick="toggleTheme()" aria-label="Theme">
+                        <i class="fas fa-moon" id="theme-icon"></i>
+                    </button>
+                </div>
+    
+                <!-- LOGO 40% MAIOR -->
+                <div class="logo">
+                    <img src="https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/giuliafotoqrcodebrlogotipo.png" alt="Giulia Castro Logo">
+                </div>
+    
+                <!-- INFO -->
+                <h1 class="name">Giulia Castro</h1>
+                <p class="title">
+                    <span class="lang-content active" data-lang="pt">Modelo & Influencer</span>
+                    <span class="lang-content" data-lang="en">Model & Influencer</span>
+                </p>
+                <p class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="lang-content active" data-lang="pt">Rio de Janeiro, Brasil</span>
+                    <span class="lang-content" data-lang="en">Rio de Janeiro, Brazil</span>
+                </p>
+                <p class="slogan">
+                    <span class="lang-content active" data-lang="pt">✨ Autenticidade em cada clique ✨</span>
+                    <span class="lang-content" data-lang="en">✨ Authenticity in every click ✨</span>
+                </p>
+            </div>
+    
+            <!-- QR SECTION -->
+            <div class="qr-section">
+                <div class="qr-card">
+                    <div class="qr-image-container">
+                        <img src="https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/qrcodewppgiulia.png" 
+                             alt="QR Code" 
+                             class="qr-image" 
+                             id="qr-display">
+                    </div>
+                    <p class="qr-label" id="qr-label">
+                        <span class="lang-content active" data-lang="pt">WhatsApp</span>
+                        <span class="lang-content" data-lang="en">WhatsApp</span>
+                    </p>
+                </div>
+    
+                <!-- BOTÕES 3D -->
+                <div class="social-buttons">
+                    <button class="social-btn whatsapp active" onclick="showQR('whatsapp')" data-social="whatsapp" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    <button class="social-btn instagram" onclick="showQR('instagram')" data-social="instagram" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </button>
+                    <button class="social-btn link" onclick="showQR('link')" data-social="link" aria-label="Link">
+                        <img src="https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/qrcodelpgiuliaclose.png" alt="Link">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // STATE
+        let currentLang = 'pt';
+        let isDarkMode = false;
+        let currentSlide = 0;
+    
+        // QR CODES
+        const qrCodes = {
+            whatsapp: {
+                url: 'https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/qrcodewppgiulia.png',
+                label: { pt: 'WhatsApp', en: 'WhatsApp' }
+            },
+            instagram: {
+                url: 'https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/qrcodeinstagramgiulia.png',
+                label: { pt: 'Instagram', en: 'Instagram' }
+            },
+            link: {
+                url: 'https://lhujzzoqebgjbsnezmrt.supabase.co/storage/v1/object/public/Photos/qrcodelpgiuliaclose.png',
+                label: { pt: 'Link', en: 'Link' }
+            }
+        };
+    
+        // INIT
+        window.addEventListener('load', () => {
+            startSlideshow();
+            initPWA();
+        });
+    
+        // SLIDESHOW TRANSLÚCIDO COM TRANSIÇÃO SUAVE
+        function startSlideshow() {
+            const slides = document.querySelectorAll('.bg-slideshow img');
+    
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 5000);
+        }
+    
+        // SHOW QR CODE
+        function showQR(social) {
+            const qrImage = document.getElementById('qr-display');
+            const qrLabelEl = document.getElementById('qr-label');
+            const buttons = document.querySelectorAll('.social-btn');
+    
+            buttons.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-social="${social}"]`).classList.add('active');
+    
+            qrImage.style.opacity = '0';
+            setTimeout(() => {
+                qrImage.src = qrCodes[social].url;
+                qrImage.style.opacity = '1';
+            }, 200);
+    
+            qrLabelEl.innerHTML = `
+                <span class="lang-content ${currentLang === 'pt' ? 'active' : ''}" data-lang="pt">${qrCodes[social].label.pt}</span>
+                <span class="lang-content ${currentLang === 'en' ? 'active' : ''}" data-lang="en">${qrCodes[social].label.en}</span>
+            `;
+        }
+    
+        // TOGGLE LANGUAGE
+        function toggleLanguage() {
+            currentLang = currentLang === 'pt' ? 'en' : 'pt';
+            document.getElementById('lang-btn').textContent = currentLang.toUpperCase();
+    
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.toggle('active', el.dataset.lang === currentLang);
+            });
+        }
+    
+        // TOGGLE THEME
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+    
+            if (isDarkMode) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+    
+        // PWA
+        function initPWA() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(reg => console.log('✅ SW registered:', reg.scope))
+                    .catch(err => console.log('❌ SW failed:', err));
+            }
+        }
+    
+        // PREVENT DOUBLE TAP ZOOM
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+
+</body>
+</html>
